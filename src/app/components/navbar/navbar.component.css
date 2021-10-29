@@ -1,0 +1,65 @@
+.navbar {
+    background-color: #000000;
+}
+
+img {
+    max-width: 200px;
+}
+
+.scrolling-text-container {
+    width: 100%;
+    background-color: blue;
+}
+  
+.scrolling-text{
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+color: white;
+margin: 0 auto;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
+.scrolling-text {
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bolder;
+-moz-transform: translateX(100%);
+-webkit-transform: translateX(100%);
+transform: translateX(100%);
+-moz-animation: my-animation 15s linear infinite;
+-webkit-animation: my-animation 15s linear infinite;
+animation: my-animation 15s linear infinite;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+from {
+    -moz-transform: translateX(100%);
+}
+to {
+    -moz-transform: translateX(-100%);
+}
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+from {
+    -webkit-transform: translateX(100%);
+}
+to {
+    -webkit-transform: translateX(-100%);
+}
+}
+
+@keyframes my-animation {
+from {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+to {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+}

@@ -1,0 +1,108 @@
+<div class="alert alert-success" *ngIf="successMessage">
+    {{ successMessage }}
+    <a class="close" (click)="onRemoveAlert()" style="cursor: pointer;">&times;</a>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage" style="text-align: center;">
+    {{ errorMessage }}
+    <a class="close" (click)="onRemoveAlert()" style="cursor: pointer;">&times;</a>
+</div>
+
+<app-navbar></app-navbar>
+
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="./assets/imgs/kicks-list.jpg" alt="menu" class="img-responsive">
+        </div>
+        <div class="col-md-8">
+            <form #addForm="ngForm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order Item</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">On Sale?</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input [(ngModel)]="currentOrderAdd.orderName" #orderName="ngModel" class="form-control"
+                                    type="text" name="orderName" placeholder="order" id="orderName" required></td>
+                            <td><input [(ngModel)]="currentOrderAdd.price" placeholder="price" #price="ngModel"
+                                    class="form-control" type="number" name="price" id="price" required></td>
+                            <td><input [(ngModel)]="currentOrderAdd.isDiscountPercentage"
+                                    #isDiscountPercentage="ngModel" (click)="onCheckAdd($event)"
+                                    class="form-control text-center" type="number" name="isDiscountPercentage"
+                                    id="isDiscountPercentage" required>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button (click)="onAdd(orderName.value, price.value, isDiscountPercentage.value)"
+                                        type="button" class="btn btn-sm btn-dark" id="addOrder">Order</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <br>
+            <hr>
+            <p>Attending Clerk: {{ clerk.name }}</p>
+            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Item</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">on 5% Promo?</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orders">
+                        <td>{{ order.orderName }}</td>
+                        <td>${{ order.price }}</td>
+                        <td>{{ order.isDiscountPercentage }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button (click)="onEdit(order)" type="button" class="btn btn-sm btn-dark"
+                                    id="editOrder">Edit</button>
+                                <button (click)="onDelete(order)" type="button" class="btn btn-sm btn-dark"
+                                    id="deleteOrder">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="isEdit">
+                        <td><input [(ngModel)]="currentOrderUpdate.orderName" #orderName="ngModel" class="form-control"
+                                type="text" name="orderName" placeholder="order" id="updOrderName" required></td>
+                        <td><input [(ngModel)]="currentOrderUpdate.price" placeholder="price" #price="ngModel"
+                                class="form-control" type="number" name="price" id="updPrice" required></td>
+                        <td><input [(ngModel)]="currentOrderUpdate.isDiscountPercentage" #isDiscountPercentage="ngModel"
+                                class="form-control text-center" type="number" name="isDiscountPercentage"
+                                id="updisDiscountPercentage" required>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <div class="btn-group">
+                                    <button (click)="onUpdate()" type="button" class="btn btn-sm btn-dark"
+                                        id="updateOrder">Update</button>
+                                    <button (click)="onCancel()" type="button"
+                                        class="btn btn-sm btn-dark">Cancel</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <p>Total Regular Bill: ${{ regularBill.totalBill | number:'1.2-2' }}</p>
+                <p>Total Discounted Bill: ${{ discountedBill.totalBill | number:'1.2-2' }} </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

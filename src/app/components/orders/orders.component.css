@@ -1,0 +1,24 @@
+*{
+    text-align: center;
+}
+
+img {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+p {
+    text-align: center;
+}
+
+.form-check-input {
+    display: block;
+    margin: 10px auto;
+}
+
+.alert {
+    position: absolute;
+    width: 100%;
+    margin-top: 62px;
+    border-radius: 0;
+}
